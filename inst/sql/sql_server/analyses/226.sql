@@ -7,32 +7,32 @@ select 226 as analysis_id,
 	v.record_count as count_value
 into @scratchDatabaseSchema@schemaDelim@tempAchillesPrefix_226
 from (
-  select 'drug_exposure' cdm_table, coalesce(visit_concept_id,0) visit_concept_id, count(*) record_count
+  select 'drug_exposure' cdm_table, coalesce(visit_concept_id,0) visit_concept_id, COUNT_BIG(*) record_count
   from @cdmDatabaseSchema.drug_exposure t
   left join @cdmDatabaseSchema.visit_occurrence v on t.visit_occurrence_id = v.visit_occurrence_id
   group by visit_concept_id
   union
-  select 'condition_occurrence' cdm_table, coalesce(visit_concept_id,0) visit_concept_id, count(*) record_count
+  select 'condition_occurrence' cdm_table, coalesce(visit_concept_id,0) visit_concept_id, COUNT_BIG(*) record_count
   from @cdmDatabaseSchema.condition_occurrence t
   left join @cdmDatabaseSchema.visit_occurrence v on t.visit_occurrence_id = v.visit_occurrence_id
   group by visit_concept_id
   union
-  select 'device_exposure' cdm_table, coalesce(visit_concept_id,0) visit_concept_id, count(*) record_count
+  select 'device_exposure' cdm_table, coalesce(visit_concept_id,0) visit_concept_id, COUNT_BIG(*) record_count
   from @cdmDatabaseSchema.device_exposure t
   left join @cdmDatabaseSchema.visit_occurrence v on t.visit_occurrence_id = v.visit_occurrence_id
   group by visit_concept_id
   union
-  select 'procedure_occurrence' cdm_table, coalesce(visit_concept_id,0) visit_concept_id, count(*) record_count
+  select 'procedure_occurrence' cdm_table, coalesce(visit_concept_id,0) visit_concept_id, COUNT_BIG(*) record_count
   from @cdmDatabaseSchema.procedure_occurrence t
   left join @cdmDatabaseSchema.visit_occurrence v on t.visit_occurrence_id = v.visit_occurrence_id
   group by visit_concept_id
   union
-  select 'measurement' cdm_table, coalesce(visit_concept_id,0) visit_concept_id, count(*) record_count
+  select 'measurement' cdm_table, coalesce(visit_concept_id,0) visit_concept_id, COUNT_BIG(*) record_count
   from @cdmDatabaseSchema.measurement t
   left join @cdmDatabaseSchema.visit_occurrence v on t.visit_occurrence_id = v.visit_occurrence_id
   group by visit_concept_id
   union
-  select 'observation' cdm_table, coalesce(visit_concept_id,0) visit_concept_id, count(*) record_count
+  select 'observation' cdm_table, coalesce(visit_concept_id,0) visit_concept_id, COUNT_BIG(*) record_count
   from @cdmDatabaseSchema.observation t
   left join @cdmDatabaseSchema.visit_occurrence v on t.visit_occurrence_id = v.visit_occurrence_id
   group by visit_concept_id
